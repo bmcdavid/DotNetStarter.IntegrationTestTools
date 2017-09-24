@@ -17,7 +17,7 @@ namespace DotNetStarter.IntegrationTestTools
     /// <summary>
     /// Default LocalDb integration
     /// </summary>
-    [Register(typeof(IDbIntegrationTestSetup), LifeTime.Singleton)]
+    [Registration(typeof(IDbIntegrationTestSetup), Lifecycle.Singleton)]
     public class LocalDbIntegrationTestSetup : IDbIntegrationTestSetup
     {
         private string DbName;
