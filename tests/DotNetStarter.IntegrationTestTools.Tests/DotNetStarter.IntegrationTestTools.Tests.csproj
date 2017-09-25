@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>    
-    <TargetFrameworks>netcoreapp2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.1;net45</TargetFrameworks>
     <!--<NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetStarter" Version="1.2.0" />
-    <PackageReference Include="DotNetStarter.Abstractions" Version="1.2.0" />
-    <PackageReference Include="DotNetStarter.DryIoc" Version="1.2.0" />
+    <PackageReference Include="DotNetStarter" Version="1.2.1" />
+    <PackageReference Include="DotNetStarter.Abstractions" Version="1.2.1" />
+    <PackageReference Include="DotNetStarter.DryIoc" Version="1.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
     <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
