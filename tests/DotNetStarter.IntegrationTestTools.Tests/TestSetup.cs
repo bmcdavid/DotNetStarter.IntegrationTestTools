@@ -38,7 +38,7 @@ namespace DotNetStarter.IntegrationTestTools.Tests
                 typeof(IDbIntegrationTestSetup).GetTypeInfo().Assembly,
                 typeof(DotNetStarter.Abstractions.IAssemblyFilter).GetTypeInfo().Assembly,
                 typeof(DotNetStarter.ApplicationContext).GetTypeInfo().Assembly,
-                typeof(DotNetStarter.DryIocLocator).GetTypeInfo().Assembly
+                typeof(DotNetStarter.Locators.DryIocLocator).GetTypeInfo().Assembly
             };
 
             DotNetStarter.ApplicationContext.Startup(assemblies: testAssemblies);

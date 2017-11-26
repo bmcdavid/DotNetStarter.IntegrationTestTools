@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetStarter.RegistrationAbstractions" Version="1.0.1" />
+    <PackageReference Include="DotNetStarter.RegistrationAbstractions" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
