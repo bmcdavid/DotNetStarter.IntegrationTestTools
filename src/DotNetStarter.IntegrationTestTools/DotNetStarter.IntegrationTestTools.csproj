@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
     <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\DotNetStarter.IntegrationTestTools.xml</DocumentationFile>
   </PropertyGroup>
