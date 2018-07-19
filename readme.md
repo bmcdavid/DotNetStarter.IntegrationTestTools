@@ -14,7 +14,7 @@ To use this tool as part of continuous integration, the build agent must also su
     [TestClass]
     public class TestSetup
     {
-        static IDbIntegrationTestSetup DbIntegrationTestSetup;
+        private static IDbIntegrationTestSetup DbIntegrationTestSetup;
 
         [AssemblyInitialize]
         public static void TestInit(TestContext testContext)

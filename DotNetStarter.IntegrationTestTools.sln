@@ -11,11 +11,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetStarter.IntegrationTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2B40A251-CF08-4D1F-99D5-895DE6F37DB6}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		.vsts-ci.yml = .vsts-ci.yml
 		license.txt = license.txt
-		build\patchAssemblyInfo.ps1 = build\patchAssemblyInfo.ps1
 		readme.md = readme.md
-		build\setPackageVersion.ps1 = build\setPackageVersion.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{CF1135AB-02E4-488E-B079-D05D149961CB}"
+	ProjectSection(SolutionItems) = preProject
+		targets\AddReadMeMarkdown.targets = targets\AddReadMeMarkdown.targets
+		targets\AddReleaseNotes.targets = targets\AddReleaseNotes.targets
+		targets\CommonBuild.props = targets\CommonBuild.props
 	EndProjectSection
 EndProject
 Global
@@ -38,5 +45,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF6C4C7D-4B78-4475-BBAD-32628DED8206} = {41731D97-33A1-4ED6-857A-4A855AEAD3AC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90596A20-B99E-412E-91E8-9DB4F8E07975}
 	EndGlobalSection
 EndGlobal

@@ -1,19 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\targets\AddReleaseNotes.targets" />
+  <Import Project="..\..\targets\AddReadMeMarkdown.targets" />
+  <Import Project="..\..\targets\CommonBuild.props" />
 
   <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageId>DotNetStarter.IntegrationTestTools</PackageId>
     <WarningsAsErrors>NU1605</WarningsAsErrors>
-    <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\DotNetStarter.IntegrationTestTools.xml</DocumentationFile>
+    <TargetFrameworks>net45;net451;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>Brad McDavid</Authors>
+    <Copyright>Copyright $(CurrentYear)</Copyright>
+    <Description>Integration test tools such as LocalDb database creation for integration testing.</Description>
+    <!--follow semantic versioning may include prelease information too-->
+    <PackageVersion>1.1.0</PackageVersion>
+    <PackageTags>EntityFramework EF database data integration test</PackageTags>
+
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/bmcdavid/DotNetStarter.IntegrationTestTools/blob/master/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://bmcdavid.github.io/DotNetStarter.IntegrationTestTools/</PackageProjectUrl>
+    <IncludeReadMeMarkdown>true</IncludeReadMeMarkdown>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+
+    <!--set assembly info version from CI prop if possible-->
+    <BuildInfo Condition="'$(CIBuildNumber)' != ''"> Commit: $(RepositoryCommit) Branch: $(RepositoryBranch) Build: $(CIBuildNumber)</BuildInfo>
+    <InformationalVersion>$(PackageVersion)$(BuildInfo)</InformationalVersion>
+
+    <!--do not change unless you want to deal with assembly redirects-->
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetStarter.RegistrationAbstractions" Version="1.1.0" />
+    <PackageReference Include="DotNetStarter.RegistrationAbstractions" Version="1.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" Condition="'$(TargetFramework)' != 'net45'" />
+    <PackageReference Include="System.AppContext" Version="4.3.0" Condition="'$(TargetFramework)' == 'netstandard1.3'" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <PackageReference Include="System.AppContext" Version="4.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.3.0" />
-  </ItemGroup>
-
 </Project>

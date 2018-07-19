@@ -1,0 +1,66 @@
+resources:
+- repo: self
+queue:
+  name: Hosted VS2017
+trigger:
+  branches:
+    include:
+    - master
+    - feature/*
+    exclude:
+    - releases/*
+
+variables:
+  BuildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: Use .NET Core sdk 2.1.0
+  inputs:
+    version: 2.1.0
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet restore"
+  inputs:
+    command: restore
+#    feedsToUse: config
+#    nugetConfigPath: '.nuget/NuGet.Config'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet build"
+  inputs:
+    feedsToUse: config
+    nugetConfigPath: '.nuget/NuGet.Config'
+    arguments: '-c $(BuildConfiguration) --no-restore'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet test"
+  inputs:
+    command: test
+    projects: 'tests/**/*.csproj'
+    feedsToUse: config
+    nugetConfigPath: '.nuget/NuGet.Config'
+    arguments: '-c $(BuildConfiguration) --no-build'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: pack
+    configuration: '$(BuildConfiguration)'
+    nobuild: true
+
+- task: PublishBuildArtifacts@1
+  displayName: "build artifact staging"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: Packages
+    publishLocation: Container
+
+#- task: NuGetCommand@2
+#  displayName: "nuget push released packages"
+#  inputs:
+#    command: push
+#    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#    nuGetFeedType: external
+#    publishFeedCredentials: 'guid-here' #guid id of service
+#  condition: and(succeeded(), eq(variables['NuGetBuildPackage'], 'true'))
